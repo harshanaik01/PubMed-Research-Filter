@@ -22,11 +22,6 @@ Ensure you have Python installed (>=3.7).
 
 Setup
 
-Clone the repository:
-
-git clone https://github.com/your-repo/pubmed-extraction.git
-cd pubmed-extraction
-
 Install dependencies:
 
 pip install -r requirements.txt
