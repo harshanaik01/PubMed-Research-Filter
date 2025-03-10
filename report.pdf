@@ -1,0 +1,30 @@
+**Title:** Extracting and Filtering PubMed Data for Company-Affiliated Authors
+
+**1. Introduction**
+This project automates the retrieval and filtering of PubMed research papers to identify articles where at least one author is affiliated with a company rather than an academic institution. By leveraging the NCBI Entrez API, the script searches PubMed, extracts metadata, and filters results to exclude academic affiliations while capturing relevant details such as author names, company affiliations, and corresponding author emails.
+
+**2. Methodology**
+- The script takes a search query as input and uses Entrez’s `esearch` function to find matching PubMed article IDs.
+- It then fetches article details using `efetch` with the `xml` format.
+- The extracted data includes publication title, authors, affiliations, and email addresses.
+- To filter out academic institutions, a regex pattern is applied to remove affiliations containing keywords such as "university," "college," "institute," "school," "hospital," or "center."
+- Results are stored in a CSV file for further analysis.
+
+**3. Challenges & Solutions**
+- **API Rate Limits:** The Entrez API limits requests per second. Solution: Implementing delays or optimizing queries.
+- **Inconsistent Data Formats:** Some PubMed articles do not have complete author affiliations. Solution: Handling missing fields with default values.
+- **Extracting Corresponding Emails:** Email addresses are not explicitly provided in most cases. Solution: Inferring emails from affiliations when available.
+
+**4. Code Structure & Modularity**
+- **`search_pubmed(query)`:** Searches PubMed and retrieves article IDs.
+- **`fetch_paper_details(pubmed_ids)`:** Fetches article metadata and filters company-affiliated authors.
+- **`save_to_csv(papers, filename)`:** Stores the extracted information in a CSV file.
+- **`main()`:** Handles command-line arguments and executes the workflow.
+
+**5. Output Validation & Testing**
+- Ensured that all retrieved affiliations correctly exclude academic institutions.
+- Manually checked output CSV files against PubMed records.
+- Verified that results contain non-academic authors with company affiliations only.
+
+This project successfully automates the extraction and filtering of company-affiliated researchers from PubMed, providing a structured and reproducible approach to analyzing research collaborations in the corporate sector.
+
